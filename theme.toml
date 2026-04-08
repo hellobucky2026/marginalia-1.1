@@ -1,0 +1,14 @@
+name = "Marginalia"
+license = "MIT"
+licenselink = "https://opensource.org/licenses/MIT"
+description = "A literary editorial theme for Micro.blog — clean, typographic, and unhurried."
+homepage = ""
+tags = ["minimal", "editorial", "literary", "blog"]
+features = ["blog"]
+
+[author]
+  name = ""
+  homepage = ""
+
+[versions]
+  min = "1.0"

@@ -1,0 +1,35 @@
+{{ define "main" }}
+<article class="post-single" itemscope itemtype="https://schema.org/BlogPosting">
+
+  <header class="post-header">
+    {{ if .Title }}
+      <h1 class="post-title" itemprop="headline">{{ .Title }}</h1>
+    {{ end }}
+
+    <div class="post-meta">
+      <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}" itemprop="datePublished">
+        {{ .Date.Format "January 2, 2006" }}
+      </time>
+      {{ range .Params.categories }}
+        <a href="{{ "/categories/" | absURL }}{{ . | urlize }}" class="post-category">{{ . }}</a>
+      {{ end }}
+    </div>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    {{ .Content }}
+  </div>
+
+  <!-- Post navigation -->
+  {{ with .PrevInSection }}
+    <p style="margin-top: var(--space-xl); border-top: 1px solid var(--paper-rule); padding-top: var(--space-l);">
+      <a href="{{ .Permalink }}" class="read-more" style="transform: scaleX(-1) inline-block">← </a>
+      &nbsp;
+      <a href="{{ .Permalink }}" style="font-family: var(--font-body); font-style:italic; color: var(--ink-light); text-decoration:none;">
+        {{ if .Title }}{{ .Title }}{{ else }}Earlier post{{ end }}
+      </a>
+    </p>
+  {{ end }}
+
+</article>
+{{ end }}
