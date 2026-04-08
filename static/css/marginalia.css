@@ -190,7 +190,11 @@ img, video { max-width: 100%; height: auto; display: block; }
   color: var(--ink);
 }
 
-.post-item.is-micro .post-content::before {
+.post-item.is-micro .post-content p:first-child {
+  display: inline;
+}
+
+.post-item.is-micro .post-content p:first-child::before {
   content: '¶';
   font-family: var(--font-display);
   font-style: normal;
@@ -198,6 +202,12 @@ img, video { max-width: 100%; height: auto; display: block; }
   margin-right: 0.4em;
   font-size: 1.1em;
   line-height: 1;
+}
+
+/* Restore block for subsequent paragraphs in micro posts */
+.post-item.is-micro .post-content p + p {
+  display: block;
+  margin-top: var(--space-s);
 }
 
 /* ─── Post Meta ─────────────────────────────────────────── */
