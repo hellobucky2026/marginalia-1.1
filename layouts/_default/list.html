@@ -1,12 +1,12 @@
 {{ define "main" }}
 <ul class="post-list" role="list">
   {{ range .Paginator.Pages }}
-    {{/* Skip anything that isn't a real post — pages, nav items, etc. */}}
-    {{ if and (ne .Type "page") (ne .Layout "page") (ne .Section "pages") }}
+    {{ $url := .RelPermalink }}
+    {{ $isPost := findRE "/[0-9]{4}/" $url }}
+    {{ if $isPost }}
     <li class="post-item {{ if .Title }}has-title{{ else }}is-micro{{ end }}">
 
       {{ if .Title }}
-        <!-- Long-form post with title -->
         <div class="post-meta">
           <time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">
             {{ .Date.Format "January 2, 2006" }}
@@ -21,9 +21,7 @@
         </h2>
 
         <div class="post-content">
-          {{ if .Summary }}
-            {{ .Summary }}
-          {{ end }}
+          {{ if .Summary }}{{ .Summary }}{{ end }}
         </div>
 
         {{ if .Truncated }}
@@ -31,7 +29,6 @@
         {{ end }}
 
       {{ else }}
-        <!-- Short micro post -->
         <div class="post-meta">
           <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
             {{ .Date.Format "Jan 2, 2006 · 3:04 PM" }}
