@@ -190,25 +190,7 @@ img, video { max-width: 100%; height: auto; display: block; }
   color: var(--ink);
 }
 
-.post-item.is-micro .post-content p:first-child {
-  display: inline;
-}
 
-.post-item.is-micro .post-content p:first-child::before {
-  content: '¶';
-  font-family: var(--font-display);
-  font-style: normal;
-  color: var(--accent);
-  margin-right: 0.4em;
-  font-size: 1.1em;
-  line-height: 1;
-}
-
-/* Restore block for subsequent paragraphs in micro posts */
-.post-item.is-micro .post-content p + p {
-  display: block;
-  margin-top: var(--space-s);
-}
 
 /* ─── Post Meta ─────────────────────────────────────────── */
 
@@ -259,7 +241,8 @@ img, video { max-width: 100%; height: auto; display: block; }
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 700;
-  font-style: italic;
+  font-style: normal;
+  letter-spacing: -0.02em;
   margin: var(--space-l) 0 var(--space-s);
   line-height: var(--lh-tight);
 }
