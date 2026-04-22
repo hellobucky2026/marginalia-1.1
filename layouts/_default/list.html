@@ -3,10 +3,12 @@
   {{ range .Paginator.Pages }}
     {{ $url := .RelPermalink }}
     {{ $isPost := findRE "/[0-9]{4}/" $url }}
-    {{ if $isPost }}
+    {{ $isNewsletter := findRE "/newsletters/" $url }}
+    {{ if and $isPost (not $isNewsletter) }}
     <li class="post-item {{ if .Title }}has-title{{ else }}is-micro{{ end }}">
 
       {{ if .Title }}
+        <!-- Long-form post with title -->
         <div class="post-meta">
           <time class="post-date" datetime="{{ .Date.Format "2006-01-02" }}">
             {{ .Date.Format "January 2, 2006" }}
@@ -21,7 +23,7 @@
         </h2>
 
         <div class="post-content">
-          {{ .Content | replaceRE `(?s)<style[^>]*>.*?</style>` "" | safeHTML }}
+          {{ if .Summary }}{{ .Summary }}{{ end }}
         </div>
 
         {{ if .Truncated }}
@@ -29,6 +31,7 @@
         {{ end }}
 
       {{ else }}
+        <!-- Short micro post -->
         <div class="post-meta">
           <time class="post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
             {{ .Date.Format "Jan 2, 2006 · 3:04 PM" }}

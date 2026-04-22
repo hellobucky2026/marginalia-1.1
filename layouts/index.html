@@ -2,14 +2,14 @@
 <ul class="post-list" role="list">
   {{ range .Paginator.Pages }}
     {{/*
-      Micro.blog stores nav pages as regular posts with top-level slugs.
-      Real posts live under year-based paths: /2026/04/07/...
-      We detect pages by checking if the URL path contains a 4-digit year segment.
-      Pages like /archive/, /about/, /subscribe/ will not match and are skipped.
+      Only render real posts:
+      - Must have a year-based URL path (/2026/04/07/...)
+      - Must NOT be a newsletter post (/newsletters/...)
     */}}
     {{ $url := .RelPermalink }}
     {{ $isPost := findRE "/[0-9]{4}/" $url }}
-    {{ if $isPost }}
+    {{ $isNewsletter := findRE "/newsletters/" $url }}
+    {{ if and $isPost (not $isNewsletter) }}
     <li class="post-item {{ if .Title }}has-title{{ else }}is-micro{{ end }}">
 
       {{ if .Title }}
