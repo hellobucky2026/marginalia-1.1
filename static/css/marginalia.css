@@ -527,6 +527,27 @@ img, video { max-width: 100%; height: auto; display: block; }
   .footer-inner { flex-direction: column; align-items: flex-start; }
 }
 
+/* ─── Micro.blog ────────────────────────────────────────── */
+
+/* Hide injected <style> blocks that browsers may expose as text */
+.post-content style { display: none; }
+
+/* Linkblog permalink and divider classes */
+.microblog_permalink {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--ink-faint);
+  font-style: italic;
+  text-decoration: none;
+}
+
+.microblog_divider {
+  border: none;
+  border-top: 1px solid var(--paper-rule);
+  margin: var(--space-s) 0;
+  color: transparent;
+}
+
 /* ─── Print ─────────────────────────────────────────────── */
 
 @media print {

@@ -21,7 +21,7 @@
         </h2>
 
         <div class="post-content">
-          {{ if .Summary }}{{ .Summary }}{{ end }}
+          {{ .Content | replaceRE `(?s)<style[^>]*>.*?</style>` "" | safeHTML }}
         </div>
 
         {{ if .Truncated }}
